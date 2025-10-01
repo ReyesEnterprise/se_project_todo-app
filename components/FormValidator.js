@@ -73,10 +73,6 @@ class FormValidator {
     this._formEl.reset();
     this._toggleButtonState();
 
-    // selecting all inputs from the inputlist of array
-    this._inputList = Array.from(
-      this._formEl.querySelectorAll(this._settings.inputSelector)
-    );
     // calling the hideInputErrors method for each input Element
     this._inputList.forEach((inputElement) => {
       this._hideInputError(inputElement);

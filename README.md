@@ -18,13 +18,21 @@ Technologies Used:
 • JavaScript (ES6+) – Core functionality for adding,
 
 Techniques & Concepts Applied:
-• DOM manipulation for dynamic task rendering
-• Event listeners for user interactions (add, complete, delete)
+• OOP & DOM manipulation for dynamic task rendering & Refactoring
+• Event listeners for user interactions (add, complete, delete, Validations)
 • Array methods (map, forEach) for task management
 • Clean code organization using functions
 • Minimal UI/UX design for simplicity and usability
 
-![screenshot of my To DO APP ](<Screenshot 2025-09-30 at 11.15.39 PM.png>)
+# screenshot of my To DO APP
+
+![Home Page](<Screenshot 2025-09-30 at 11.15.39 PM.png>)
+
+![Popup Window](<Screenshot 2025-09-30 at 11.59.28 PM.png>)
+
+![validation Errors](<Screenshot 2025-10-01 at 12.00.34 AM.png>)
+
+![Button active](<Screenshot 2025-10-01 at 12.00.50 AM.png>)
 
 ## Deployment
 
