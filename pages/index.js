@@ -62,7 +62,7 @@ addTodoForm.addEventListener("submit", (evt) => {
   closeModal(addTodoPopup);
 
   // restting the form and disabaling the button
-  newTodoVali.resetValidation();
+  newTodoValidator.resetValidation();
 });
 
 // array loop
@@ -72,5 +72,5 @@ initialTodos.forEach((item) => {
 });
 
 // new instance of FormValidator
-const newTodoVali = new FormValidator(validationConfig, addTodoForm);
-newTodoVali.enableValidation();
+const newTodoValidator = new FormValidator(validationConfig, addTodoForm);
+newTodoValidator.enableValidation();
