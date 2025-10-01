@@ -1,14 +1,30 @@
 # Simple Todo App
 
-Give a brief description of the project here. Feel free to give it a different name.
+A simple and lightweight To-Do application built with JavaScript. This app lets you add, complete, and remove tasks to help keep track of what needs to get done.
 
 ## Functionality
 
-Give a more detailed explanation of the project and its functionality.
+Features:
+• Add new tasks
+• Mark tasks as complete
+• Delete tasks you no longer need
+• Clean and minimal interface
 
 ## Technology
 
-Give a description of the technologies and techniques used. Pictures, GIFs, or screenshots that detail the project features are recommended.
+Technologies Used:
+• HTML5 – Structure of the app
+• CSS3 – Styling and layout (responsive design for desktop and mobile)
+• JavaScript (ES6+) – Core functionality for adding,
+
+Techniques & Concepts Applied:
+• DOM manipulation for dynamic task rendering
+• Event listeners for user interactions (add, complete, delete)
+• Array methods (map, forEach) for task management
+• Clean code organization using functions
+• Minimal UI/UX design for simplicity and usability
+
+![screenshot of my To DO APP ](<Screenshot 2025-09-30 at 11.15.39 PM.png>)
 
 ## Deployment
 
