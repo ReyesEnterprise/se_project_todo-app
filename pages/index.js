@@ -8,27 +8,59 @@ import { initialTodos, validationConfig } from "../utils/constants.js";
 import Todo from "../components/Todo.js";
 import FormValidator from "../components/FormValidator.js";
 import Section from "../components/Section.js";
-import Popup from "../components/Popup.js";
 import PopupWithForm from "../components/PopupWithForm.js";
+import TodoCounter from "../components/TodoCounter.js";
 
 // const elements (html elements selected from Dom)
 const addTodoButton = document.querySelector(".button_action_add");
 const addTodoPopupEl = document.querySelector("#add-todo-popup");
 const addTodoForm = addTodoPopupEl.querySelector(".popup__form");
-// const addTodoCloseBtn = addTodoPopupEl.querySelector(".popup__close");
 const todosList = document.querySelector(".todos__list");
 
-// instance of a class
+const counterSelector = document.querySelector(".counter__text");
+const todoCounter = new TodoCounter(initialTodos, ".counter__text");
+
+function handleCheck(completed) {
+  todoCounter.updateCompleted(completed);
+}
+
+function handleDelete(completed) {
+  // A todo was removed: decrement total, and if it was completed,
+  // decrement the completed count as well.
+  todoCounter.updateTotal(false);
+  if (completed) todoCounter.updateCompleted(false);
+}
+
+// instance of a the popupWithForm Class
 const addTodoPopup = new PopupWithForm({
   popupSelector: "#add-todo-popup",
-  handleFormSubmit: () => {},
+  handleFormSubmit: (inputValues) => {
+    // these are all the values that need to be passed
+    const name = inputValues.name;
+    const dateInput = inputValues.date;
+    const date = new Date(dateInput);
+    const id = uuidv4();
+    // then passed as an object to the generateTodo class
+    const values = { name, date, id };
+    // calling the generateTodo function & pass values
+    const todo = generateTodo(values);
+    // add to the Dom with the section class
+    section.addItem(todo);
+    // Update the total count for the new todo
+    todoCounter.updateTotal(true);
+    // close the popup
+    addTodoPopup.close();
+    // restting the form and disabaling the button
+    newTodoValidator.resetValidation();
+  },
 });
-// calling a method of a class
+
+// calling the popup calsses method - setEventListeners
 addTodoPopup.setEventListeners();
 
 // function that creats a new instance of a class and pass data
 const generateTodo = (data) => {
-  const todo = new Todo(data, "#todo-template");
+  const todo = new Todo(data, "#todo-template", handleCheck, handleDelete);
   const todoElement = todo.getView();
 
   return todoElement;
@@ -39,33 +71,7 @@ addTodoButton.addEventListener("click", () => {
   addTodoPopup.open();
 });
 
-// submit form listener
-addTodoForm.addEventListener("submit", (evt) => {
-  evt.preventDefault();
-  const name = evt.target.name.value;
-  const dateInput = evt.target.date.value;
-
-  // Create a date object and adjust for timezone
-  const date = new Date(dateInput);
-  date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
-
-  // creating unique id propertie
-  const id = uuidv4();
-
-  // creating complete propertie
-  const completed = false;
-
-  // needs properties of id and completed
-  const values = { name, date, id, completed };
-  const todo = generateTodo(values);
-  section.addItem(todo);
-  addTodoPopup.close();
-
-  // restting the form and disabaling the button
-  newTodoValidator.resetValidation();
-});
-
-// instance of section class and passes the initialTodos
+// instance of the section class and passes the initialTodos
 const section = new Section({
   items: initialTodos,
   renderer: (item) => {
@@ -74,7 +80,7 @@ const section = new Section({
   },
   containerSelector: ".todos__list",
 });
-// call of the sections method renderItems
+// calling the section calsses methiod - rendererItems
 section.rendererItems();
 
 // new instance of FormValidator
