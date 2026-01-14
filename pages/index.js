@@ -15,10 +15,6 @@ import TodoCounter from "../components/TodoCounter.js";
 const addTodoButton = document.querySelector(".button_action_add");
 const addTodoPopupEl = document.querySelector("#add-todo-popup");
 const addTodoForm = addTodoPopupEl.querySelector(".popup__form");
-const todosList = document.querySelector(".todos__list");
-
-const counterSelector = document.querySelector(".counter__text");
-const todoCounter = new TodoCounter(initialTodos, ".counter__text");
 
 function handleCheck(completed) {
   todoCounter.updateCompleted(completed);
@@ -58,6 +54,9 @@ const addTodoPopup = new PopupWithForm({
 // calling the popup calsses method - setEventListeners
 addTodoPopup.setEventListeners();
 
+// instance of the todoCounter class
+const todoCounter = new TodoCounter(initialTodos, ".counter__text");
+
 // function that creats a new instance of a class and pass data
 const generateTodo = (data) => {
   const todo = new Todo(data, "#todo-template", handleCheck, handleDelete);
@@ -81,7 +80,7 @@ const section = new Section({
   containerSelector: ".todos__list",
 });
 // calling the section calsses methiod - rendererItems
-section.rendererItems();
+section.renderItems();
 
 // new instance of FormValidator
 const newTodoValidator = new FormValidator(validationConfig, addTodoForm);
